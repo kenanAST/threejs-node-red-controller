@@ -1,14 +1,7 @@
 import React, { useState, useRef } from "react";
-import ReactDOM from "react-dom/client";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { Model } from "./assets/models/Model.jsx";
-import { Drone } from "./assets/models/Drone.jsx";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { Room } from "./assets/models/Room.jsx";
 import { Cafe } from "./assets/models/Cafe.jsx";
-import { SelectiveBloom, EffectComposer } from "@react-three/postprocessing";
 import Slider from "@mui/material/Slider";
 
 const App = () => {
@@ -28,48 +21,54 @@ const App = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <div style={{ width: "40vw", height: "80vh" }}>
-        <Canvas>
-          <Cafe bulbs={bulbs} />
-          <OrbitControls />
-        </Canvas>
-      </div>
+    <>
+      <h1 style={{ paddingTop: "50px", marginBottom: 0, textAlign: "center" }}>
+        Node Red Control Test
+      </h1>
+
       <div
         style={{
           display: "flex",
+          justifyContent: "space-evenly",
           alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          width: "40vw",
-          height: "80vh",
-          padding: "20px",
+          minHeight: "100vh",
         }}
       >
-        {bulbs.map((bulb) => {
-          return (
-            <div key={bulb.bulb_id} style={{ width: "30vw" }}>
-              <p>
-                Bulb {bulb.bulb_id} : {bulb.strength * 100}%
-              </p>
-              <Slider
-                defaultValue={100}
-                aria-label="Default"
-                valueLabelDisplay="auto"
-                onChange={(event) => handleBulbUpdate(bulb.bulb_id, event)}
-              />
-            </div>
-          );
-        })}
+        <div style={{ width: "40vw", height: "80vh" }}>
+          <Canvas>
+            <Cafe bulbs={bulbs} />
+            <OrbitControls />
+          </Canvas>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            width: "40vw",
+            height: "80vh",
+            padding: "20px",
+          }}
+        >
+          {bulbs.map((bulb) => {
+            return (
+              <div key={bulb.bulb_id} style={{ width: "30vw" }}>
+                <p>
+                  Bulb {bulb.bulb_id} : {bulb.strength * 100}%
+                </p>
+                <Slider
+                  defaultValue={100}
+                  aria-label="Default"
+                  valueLabelDisplay="auto"
+                  onChange={(event) => handleBulbUpdate(bulb.bulb_id, event)}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
