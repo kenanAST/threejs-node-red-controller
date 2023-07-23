@@ -1,5 +1,5 @@
 # Three.js Isometric Environment Simulation Visualizer of a Node-RED Dashboard Controller
-https://i.imgur.com/BH9OHkM.png
+
 ![Screenshot](https://i.imgur.com/BH9OHkM.png)
 
 ## Description
