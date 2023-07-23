@@ -15,7 +15,9 @@ export const Cafe = (props) => {
   const { nodes, materials } = useGLTF("./assets/cafe_alpha100.glb");
 
   const { bulbs } = props;
-  const [bulbs1, bulbs2, bulbs3] = bulbs;
+  const [bulbs1] = bulbs;
+  const bulbs2 = bulbs1;
+  const bulbs3 = bulbs1;
 
   const bulbMeshRef1 = useRef();
   const bulbMeshRef2 = useRef();
@@ -8781,15 +8783,23 @@ export const Cafe = (props) => {
           <Selection>
             <EffectComposer multisampling={8}>
               <SelectiveBloom
-                lights={[bulbLightRef1]}
-                selection={[bulbMeshRef1, cylinderMeshRef1]}
-                intensity={bulbs1.strength}
-                luminanceThreshold={1 - bulbs1.strength}
+                lights={[bulbLightRef1, bulbLightRef2, bulbLightRef3]}
+                selection={[
+                  bulbMeshRef1,
+                  bulbMeshRef2,
+                  bulbMeshRef3,
+                  cylinderMeshRef1,
+                  cylinderMeshRef2,
+                  cylinderMeshRef3,
+                ]}
+                intensity={0.25}
+                luminanceThreshold={0}
                 luminanceSmoothing={0.9}
-                height={100}
+                height={300}
               />
               <Select enabled>
                 <group position={[-7.843, 15, -15]} scale={[1, 0.9, 1]}>
+                  <ambientLight intensity={0.2} />
                   <mesh
                     castShadow
                     receiveShadow
@@ -8848,95 +8858,67 @@ export const Cafe = (props) => {
                     position={[0.031, -6.508, 0.016]}
                   />
                 </group>
-              </Select>
-            </EffectComposer>
-          </Selection>
 
-          <Selection>
-            <EffectComposer multisampling={8}>
-              <SelectiveBloom
-                lights={[bulbLightRef2]}
-                selection={[bulbMeshRef2, cylinderMeshRef2]}
-                intensity={bulbs2.strength}
-                luminanceThreshold={1 - bulbs2.strength}
-                luminanceSmoothing={0.9}
-                height={200}
-              />
-            </EffectComposer>
-            <Select enabled>
-              <group position={[-15, 15, -15]} scale={[1, 0.9, 1]}>
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.cylinder129.geometry}
-                  material={materials.Material_868}
-                  position={[0.017, 6.863, -0.007]}
-                  scale={[0.516, 0.34, 0.516]}
-                />
-                <mesh
-                  ref={cylinderMeshRef2}
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.cylinder130.geometry}
-                  material={materials.Material_869}
-                  position={[0, -5.428, 0]}
-                  scale={3.223}
-                />
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.cylinder131.geometry}
-                  material={materials.Material_870}
-                  position={[0.031, -5.857, 0.018]}
-                  rotation={[Math.PI, 0, 0]}
-                  scale={[0.672, 0.685, 0.672]}
-                />
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.cylinder132.geometry}
-                  material={materials.Material_872}
-                  position={[0, -2.936, -0.007]}
-                  scale={[0.516, 0.34, 0.516]}
-                />
-                <mesh
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.cylinder133.geometry}
-                  material={materials.Material_873}
-                  position={[-0.01, 2.071, -0.007]}
-                  scale={[0.08, 9.767, 0.08]}
-                />
-                <mesh
-                  ref={bulbMeshRef2}
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.sphere104.geometry}
-                  material={materials.Material_871}
-                  position={[0.031, -6.508, 0.016]}
-                  rotation={[Math.PI, 0, 0]}
-                  scale={[1.097, 1.05, 1.035]}
-                />
-                <pointLight
-                  ref={bulbLightRef2}
-                  intensity={bulbs2.strength}
-                  position={[0.031, -6.508, 0.016]}
-                />
-              </group>
-            </Select>
-          </Selection>
+                <group position={[-15, 15, -15]} scale={[1, 0.9, 1]}>
+                  <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.cylinder129.geometry}
+                    material={materials.Material_868}
+                    position={[0.017, 6.863, -0.007]}
+                    scale={[0.516, 0.34, 0.516]}
+                  />
+                  <mesh
+                    ref={cylinderMeshRef2}
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.cylinder130.geometry}
+                    material={materials.Material_869}
+                    position={[0, -5.428, 0]}
+                    scale={3.223}
+                  />
+                  <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.cylinder131.geometry}
+                    material={materials.Material_870}
+                    position={[0.031, -5.857, 0.018]}
+                    rotation={[Math.PI, 0, 0]}
+                    scale={[0.672, 0.685, 0.672]}
+                  />
+                  <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.cylinder132.geometry}
+                    material={materials.Material_872}
+                    position={[0, -2.936, -0.007]}
+                    scale={[0.516, 0.34, 0.516]}
+                  />
+                  <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.cylinder133.geometry}
+                    material={materials.Material_873}
+                    position={[-0.01, 2.071, -0.007]}
+                    scale={[0.08, 9.767, 0.08]}
+                  />
+                  <mesh
+                    ref={bulbMeshRef2}
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.sphere104.geometry}
+                    material={materials.Material_871}
+                    position={[0.031, -6.508, 0.016]}
+                    rotation={[Math.PI, 0, 0]}
+                    scale={[1.097, 1.05, 1.035]}
+                  />
+                  <pointLight
+                    ref={bulbLightRef2}
+                    intensity={bulbs2.strength}
+                    position={[0.031, -6.508, 0.016]}
+                  />
+                </group>
 
-          <Selection>
-            <EffectComposer multisampling={8}>
-              <SelectiveBloom
-                lights={[bulbLightRef3]}
-                selection={[bulbMeshRef3, cylinderMeshRef3]}
-                intensity={bulbs3.strength}
-                luminanceThreshold={1 - bulbs3.strength}
-                luminanceSmoothing={0.9}
-                height={300}
-              />
-              <Select enabled>
                 <group position={[-22, 15, -15]} scale={[1, 0.9, 1]}>
                   <mesh
                     castShadow
